@@ -1,0 +1,700 @@
+/* =============================================================================
+   Ris Adams · Personal Kagi Theme  v1.0
+   "Ship Code. Stay Human."  ·  risadams.com
+   ─────────────────────────────────────────────────────────────────────────────
+   Accent   #9f1158  deep rose / magenta
+   No external dependencies · System font stack · Light + Dark modes
+   Apply at: kagi.com/settings/custom_css
+   ============================================================================= */
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §1  Custom properties — Light mode (default + named light themes)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+:root,
+.theme_light,
+.theme_calm_blue,
+.theme_warm,
+.theme_default {
+
+  /* Surfaces */
+  --background-color:              #faf6f8;
+  --site_info_bottom_bg:           #f2eaef;
+
+  /* Brand accent */
+  --ra-accent:                     #9f1158;
+  --ra-accent-hover:               #7d0c45;
+  --ra-accent-subtle:              #f5e8ef;
+  --ra-accent-mid:                 #c86090;
+
+  /* Typography */
+  --ra-text:                       #1a0d14;
+  --ra-text-dim:                   #5c3a4a;
+  --ra-text-faint:                 #8a6070;
+
+  /* Kagi native result variables */
+  --search-result-title:           #9f1158;
+  --result-item-title-border:      #e5d0db;
+  --color-primary-dim_2:           #e8d5df;
+
+  /* Borders */
+  --ra-border:                     #e5d0db;
+
+  /* Input */
+  --ra-input-bg:                   #ffffff;
+  --ra-input-border:               #d8c4cf;
+
+  /* Cards / panels */
+  --ra-card:                       #f5edf2;
+  --ra-card-border:                #e5d0db;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §2  Custom properties — Dark mode
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.theme_dark,
+.theme_moon_dark {
+
+  /* Surfaces */
+  --background-color:              #130e10;
+  --site_info_bottom_bg:           #1e1418;
+
+  /* Brand accent (lightened for legibility on dark) */
+  --ra-accent:                     #e0729e;
+  --ra-accent-hover:               #ea90b5;
+  --ra-accent-subtle:              #2a1520;
+  --ra-accent-mid:                 #b04878;
+
+  /* Typography */
+  --ra-text:                       #f0dce6;
+  --ra-text-dim:                   #a07885;
+  --ra-text-faint:                 #6e5060;
+
+  /* Kagi native result variables */
+  --search-result-title:           #e07aaa;
+  --result-item-title-border:      #2c1c24;
+  --color-primary-dim_2:           #3a2530;
+
+  /* Borders */
+  --ra-border:                     #2c1c24;
+
+  /* Input */
+  --ra-input-bg:                   #1e1418;
+  --ra-input-border:               #3d2a35;
+
+  /* Cards / panels */
+  --ra-card:                       #1e1418;
+  --ra-card-border:                #2c1c24;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §3  Base: global background, text, font
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+html,
+body {
+  background-color: var(--background-color) !important;
+  color: var(--ra-text) !important;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    system-ui,
+    "Helvetica Neue",
+    Arial,
+    sans-serif !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §4  Header & search bar wrapper
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.m-h,
+header,
+.header {
+  background-color: var(--background-color) !important;
+  border-bottom: 1px solid var(--ra-border) !important;
+  box-shadow: none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §5  Search input
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+input[type="text"],
+input[type="search"],
+.search-input,
+._0_query_input,
+.query-input {
+  background-color: var(--ra-input-bg) !important;
+  border-color: var(--ra-input-border) !important;
+  color: var(--ra-text) !important;
+  caret-color: var(--ra-accent) !important;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+.search-input:focus,
+._0_query_input:focus {
+  border-color: var(--ra-accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ra-accent) 18%, transparent) !important;
+}
+
+input::placeholder,
+.search-input::placeholder {
+  color: var(--ra-text-faint) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §6  Result titles & title links
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.__sri_title_link,
+._0_sri_title_link,
+._0_sri_title_link._0_URL,
+.search-result-title a,
+.__srgi-title a,
+.sri-title a {
+  color: var(--search-result-title) !important;
+  border-bottom: 1px solid var(--result-item-title-border) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.__sri_title_link:hover,
+._0_sri_title_link:hover,
+.search-result-title a:hover,
+.__srgi-title a:hover {
+  color: var(--ra-accent-hover) !important;
+  border-bottom-color: var(--ra-accent) !important;
+}
+
+/* News results */
+.newsResultTitle a._0_TITLE,
+.newsResultItem .newsResultHeader a {
+  color: var(--search-result-title) !important;
+  border-bottom-color: var(--result-item-title-border) !important;
+  text-decoration: none !important;
+}
+
+.newsResultTitle a:hover,
+.newsResultItem a:hover {
+  color: var(--ra-accent-hover) !important;
+  border-bottom-color: var(--ra-accent) !important;
+}
+
+/* Wikipedia module */
+.wikipediaResult a,
+.wikipedia-result a {
+  color: var(--search-result-title) !important;
+  border-bottom: none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §7  Result URLs (the green path line)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.sri-url,
+.sri_url_path_box,
+._0_url,
+.search-result-url,
+.result-url {
+  color: var(--ra-text-dim) !important;
+}
+
+.sri-url .path,
+.url-path,
+.path {
+  color: var(--ra-text-faint) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §8  Result descriptions / snippets
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.sri-desc,
+.search-result-desc,
+._0_sri_desc,
+.result-description {
+  color: var(--ra-text-dim) !important;
+  line-height: 1.55 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §9  Result item rows
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.search-result,
+.sri-group,
+._0_item {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--ra-border) !important;
+}
+
+.search-result:hover,
+._0_item:hover {
+  background-color: color-mix(in srgb, var(--ra-accent) 4%, transparent) !important;
+  border-radius: 6px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §10  Instant answers & inline widgets
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.instant-answer {
+  background-color: var(--ra-card) !important;
+  border-top: 1px solid var(--ra-accent-mid) !important;
+  border-bottom: 1px solid var(--ra-accent-mid) !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+._0_widget,
+.widget,
+.ia-body,
+.inline-content {
+  background-color: var(--ra-card) !important;
+  border: 1px solid var(--ra-card-border) !important;
+  border-radius: 8px !important;
+}
+
+.ia-title h3,
+._0_ia-title,
+.ia-header {
+  color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §11  Sidebar / knowledge panel
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.sidebar,
+.right-sidebar,
+._0_sidebar,
+#sidebar {
+  background-color: transparent !important;
+}
+
+.d-info-box,
+.wiki-result-box,
+.sidebar-widget,
+.si-box,
+.wikipediaResult,
+.wikipedia-result {
+  background-color: var(--ra-card) !important;
+  border: 1px solid var(--ra-card-border) !important;
+  border-radius: 8px !important;
+}
+
+.d-info-box-title,
+.d-info-box-title a,
+.d-info-box h2 {
+  color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §12  Navigation tabs  (All · Images · News · Videos · …)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+._0_lenses {
+  border-bottom: 1px solid var(--ra-border) !important;
+}
+
+._0_lenses a,
+.serp-nav a,
+.lens-tab,
+._0_lens-tab {
+  color: var(--ra-text-dim) !important;
+  border-bottom: 2px solid transparent !important;
+  text-decoration: none !important;
+  transition: color 0.12s ease, border-color 0.12s ease !important;
+}
+
+._0_lenses a:hover,
+.serp-nav a:hover,
+._0_lens-tab:hover {
+  color: var(--ra-accent) !important;
+}
+
+._0_lenses a.active,
+._0_lenses a._0_active,
+.serp-nav a.active,
+.serp-nav a._0_active {
+  color: var(--ra-accent) !important;
+  border-bottom: 2px solid var(--ra-accent) !important;
+  font-weight: 600 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §13  Buttons
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.btn.--primary,
+.k_ui_button.--primary,
+button[type="submit"],
+input[type="submit"] {
+  background-color: var(--ra-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--ra-accent) !important;
+}
+
+.btn.--primary:hover,
+.k_ui_button.--primary:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--ra-accent-hover) !important;
+  border-color: var(--ra-accent-hover) !important;
+}
+
+.btn.--secondary-s,
+.k_ui_button.--secondary,
+.ranked-item-tab-links a.--secondary-s {
+  color: var(--ra-accent) !important;
+  border-color: var(--ra-accent-mid) !important;
+  background-color: transparent !important;
+}
+
+.btn.--secondary-s:hover {
+  background-color: var(--ra-accent-subtle) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §14  Pagination
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.serp_nav_end a,
+.pagination a,
+._0_page-link {
+  color: var(--ra-text-dim) !important;
+  border: 1px solid var(--ra-border) !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+}
+
+.serp_nav_end a:hover,
+.pagination a:hover {
+  color: var(--ra-accent) !important;
+  border-color: var(--ra-accent) !important;
+  background-color: var(--ra-accent-subtle) !important;
+}
+
+.serp_nav_end a.current,
+.serp_nav_end a._0_active,
+.pagination a.current {
+  color: #ffffff !important;
+  background-color: var(--ra-accent) !important;
+  border-color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §15  Top-panel / query stats
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.top-panel,
+._0_queryInfo,
+.query-info,
+.result-stats {
+  color: var(--ra-text-faint) !important;
+  font-size: 0.82rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §16  Floating quick-search button
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.quick-search-btn {
+  background-color: var(--ra-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--ra-accent) !important;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--ra-accent) 35%, transparent) !important;
+}
+
+.quick-search-btn:hover {
+  background-color: var(--ra-accent-hover) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §17  Dropdown menus
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.k_ui_dropdown_data_list,
+.dropdown-menu,
+._0_dropdown {
+  background-color: var(--ra-card) !important;
+  border: 1px solid var(--ra-card-border) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 16px color-mix(in srgb, #000000 12%, transparent) !important;
+}
+
+.k_ui_dropdown_data_list li a,
+.dropdown-menu a {
+  color: var(--ra-text) !important;
+}
+
+.k_ui_dropdown_data_list li a:hover,
+.dropdown-menu a:hover {
+  background-color: color-mix(in srgb, var(--ra-accent) 10%, transparent) !important;
+  color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §18  Footer / site-info bar
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.footer,
+footer,
+._0_footer,
+.site-info {
+  background-color: var(--site_info_bottom_bg) !important;
+  border-top: 1px solid var(--ra-border) !important;
+  color: var(--ra-text-dim) !important;
+}
+
+.footer a,
+footer a,
+._0_footer a {
+  color: var(--ra-text-dim) !important;
+  text-decoration: none !important;
+}
+
+.footer a:hover,
+footer a:hover {
+  color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §19  More-menu (ellipsis per result)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.sri_more_menu_box button,
+.result-more-btn {
+  color: var(--ra-text-faint) !important;
+}
+
+.sri_more_menu,
+.result-more-menu {
+  background-color: var(--ra-card) !important;
+  border: 1px solid var(--ra-card-border) !important;
+  border-radius: 6px !important;
+}
+
+.sri_more_menu a,
+.sri_more_menu button {
+  color: var(--ra-text) !important;
+}
+
+.sri_more_menu a:hover {
+  color: var(--ra-accent) !important;
+  background-color: var(--ra-accent-subtle) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §20  Tags / ranked badges
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+._0_tag,
+.result-tag,
+.label-tag,
+.ranked-label {
+  background-color: var(--ra-accent-subtle) !important;
+  color: var(--ra-accent) !important;
+  border: 1px solid color-mix(in srgb, var(--ra-accent) 25%, transparent) !important;
+  border-radius: 3px !important;
+  font-size: 0.72rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §21  General links (non-result)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+a {
+  color: var(--ra-accent) !important;
+}
+
+a:visited {
+  color: var(--ra-accent-mid) !important;
+}
+
+a:hover {
+  color: var(--ra-accent-hover) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §22  Scrollbar
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--ra-accent) 35%, var(--ra-border));
+  border-radius: 4px;
+  border: 1px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ra-accent) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §23  Text selection
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+::selection {
+  background-color: color-mix(in srgb, var(--ra-accent) 22%, transparent);
+  color: inherit;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §24  Focus rings (accessibility)
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--ra-accent) !important;
+  outline-offset: 2px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §25  Image results grid
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.m-image-box,
+.imageResult {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.m-image-domain,
+.m-image-res {
+  color: var(--ra-text-faint) !important;
+}
+
+.m-image-preview-buttons a {
+  background-color: var(--ra-card) !important;
+  color: var(--ra-accent) !important;
+  border: 1px solid var(--ra-card-border) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §26  Video results
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.videoResultItem {
+  border-bottom: 1px solid var(--ra-border) !important;
+}
+
+.videoResultTitle a {
+  color: var(--search-result-title) !important;
+  text-decoration: none !important;
+}
+
+.videoResultTitle a:hover {
+  color: var(--ra-accent-hover) !important;
+}
+
+.videoResultDesc {
+  color: var(--ra-text-dim) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §27  Search form icons & UI chrome
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.search-form-icons svg path,
+.search-form-icons svg {
+  color: var(--ra-text-dim) !important;
+}
+
+.rewrite_icon {
+  color: var(--ra-accent-mid) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §28  "Ranked" / blocked / pinned item decoration
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.ranked-up-item {
+  border-left: 3px solid var(--ra-accent) !important;
+  padding-left: 10px !important;
+}
+
+.ranked-down-item,
+.blocked-item {
+  opacity: 0.5 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §29  Kagi assistant / AI panels
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.assistant-panel,
+.ai-result,
+._0_ai_result,
+.quick-answer {
+  background-color: var(--ra-card) !important;
+  border: 1px solid var(--ra-card-border) !important;
+  border-left: 3px solid var(--ra-accent) !important;
+  border-radius: 8px !important;
+}
+
+.quick-answer-text,
+.ai-result-text {
+  color: var(--ra-text) !important;
+  line-height: 1.6 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   §30  Sidebar filter nav & lens bar
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.sidebar-filter-nav-form {
+  background-color: transparent !important;
+}
+
+.sidebar-filter-nav a {
+  color: var(--ra-text-dim) !important;
+  text-decoration: none !important;
+}
+
+.sidebar-filter-nav a:hover,
+.sidebar-filter-nav a.active {
+  color: var(--ra-accent) !important;
+}
