@@ -3,9 +3,11 @@
    "Ship Code. Stay Human."  ·  risadams.com
    ─────────────────────────────────────────────────────────────────────────────
    Accent   #9f1158  deep rose / magenta
-   No external dependencies · System font stack · Light + Dark modes
+   Fonts    Inter · Fraunces · JetBrains Mono (Google Fonts)
    Apply at: kagi.com/settings/custom_css
    ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
 
 /* ══════════════════════════════════════════════════════════════════════════════
@@ -48,6 +50,11 @@
   /* Cards / panels */
   --ra-card:                       #f5edf2;
   --ra-card-border:                #e5d0db;
+
+  /* Fonts */
+  --ra-font-sans:                  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ra-font-serif:                 'Fraunces', 'Crimson Pro', Georgia, serif;
+  --ra-font-mono:                  'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
 }
 
 
@@ -99,14 +106,7 @@ html,
 body {
   background-color: var(--background-color) !important;
   color: var(--ra-text) !important;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    system-ui,
-    "Helvetica Neue",
-    Arial,
-    sans-serif !important;
+  font-family: var(--ra-font-sans) !important;
 }
 
 
@@ -166,7 +166,10 @@ input::placeholder,
   color: var(--search-result-title) !important;
   border-bottom: 1px solid var(--result-item-title-border) !important;
   text-decoration: none !important;
-  font-weight: 500 !important;
+  font-family: var(--ra-font-serif) !important;
+  font-weight: 400 !important;
+  font-size: 19px !important;
+  letter-spacing: -0.01em !important;
 }
 
 .__sri_title_link:hover,
@@ -209,6 +212,9 @@ input::placeholder,
 .search-result-url,
 .result-url {
   color: var(--ra-text-dim) !important;
+  font-family: var(--ra-font-mono) !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.01em !important;
 }
 
 .sri-url .path,
@@ -344,28 +350,74 @@ input::placeholder,
    §13  Buttons
    ══════════════════════════════════════════════════════════════════════════════ */
 
-.btn.--primary,
-.k_ui_button.--primary,
-button[type="submit"],
-input[type="submit"] {
+/* ── Search submit button: ghost by default → filled on hover ── */
+.search-btn,
+.search-submit,
+._0_searchSubmit,
+._0_search_submit,
+.header-search-submit,
+.m-h button[type="submit"],
+.search-form button[type="submit"],
+.search-form-submit {
+  background-color: transparent !important;
+  color: var(--ra-accent) !important;
+  border: 1.5px solid color-mix(in srgb, var(--ra-accent) 40%, transparent) !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  cursor: pointer !important;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.search-btn:hover,
+.search-submit:hover,
+._0_searchSubmit:hover,
+.m-h button[type="submit"]:hover,
+.search-form button[type="submit"]:hover,
+.search-form-submit:hover {
   background-color: var(--ra-accent) !important;
+  border-color: var(--ra-accent) !important;
   color: #ffffff !important;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ra-accent) 30%, transparent) !important;
+}
+
+.search-btn:active,
+.search-submit:active,
+._0_searchSubmit:active {
+  background-color: var(--ra-accent-hover) !important;
+  transform: scale(0.97) !important;
+}
+
+.search-btn:focus-visible,
+.search-submit:focus-visible,
+._0_searchSubmit:focus-visible,
+.m-h button[type="submit"]:focus-visible {
+  outline: 2px solid var(--ra-accent) !important;
+  outline-offset: 2px !important;
+  background-color: var(--ra-accent-subtle) !important;
   border-color: var(--ra-accent) !important;
 }
 
+/* ── Other primary buttons ── */
+.btn.--primary,
+.k_ui_button.--primary {
+  background-color: var(--ra-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--ra-accent) !important;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
 .btn.--primary:hover,
-.k_ui_button.--primary:hover,
-button[type="submit"]:hover,
-input[type="submit"]:hover {
+.k_ui_button.--primary:hover {
   background-color: var(--ra-accent-hover) !important;
   border-color: var(--ra-accent-hover) !important;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ra-accent) 30%, transparent) !important;
 }
 
 .btn.--secondary-s,
 .k_ui_button.--secondary,
 .ranked-item-tab-links a.--secondary-s {
   color: var(--ra-accent) !important;
-  border-color: var(--ra-accent-mid) !important;
+  border-color: color-mix(in srgb, var(--ra-accent) 40%, transparent) !important;
   background-color: transparent !important;
 }
 
